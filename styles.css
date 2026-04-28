@@ -269,6 +269,17 @@ button { font-family: inherit; }
   max-width: 480px;
   line-height: 1.55;
 }
+.signup-helper .powered-by {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--faint);
+  border-bottom: 1px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.signup-helper .powered-by:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
 
 .hero-secondary { display: flex; gap: 28px; flex-wrap: wrap; }
 .text-link {

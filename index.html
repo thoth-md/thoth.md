@@ -88,11 +88,17 @@
         <span class="eyebrow"><span class="accent">01 ·</span>&nbsp;&nbsp;Thoth · markdown, extended</span>
         <h1>Plain text that scales <span class="quiet">further than unstructured content.</span></h1>
         <p class="lede">Thoth is markdown extended for scale: readable cold, composable across files, structured enough for robots to read and write, and with tooling for humans and robots alike.</p>
-        <form class="signup" onsubmit="event.preventDefault()">
-          <input id="hero-email" type="email" placeholder="you@domain.com" aria-label="Email"/>
+        <form class="signup embeddable-buttondown-form"
+              action="https://buttondown.com/api/emails/embed-subscribe/thoth"
+              method="post"
+              target="popupwindow">
+          <input id="hero-email" type="email" name="email" placeholder="you@domain.com" aria-label="Email" required/>
           <button type="submit">Get notified</button>
         </form>
-        <p class="signup-helper">Stay up to date on our progress and key decisions. No spam, and we won't share your email.</p>
+        <p class="signup-helper">
+          Stay up to date on our progress and key decisions. No spam, and we won't share your email.
+          <a class="powered-by" href="https://buttondown.com/refer/thoth" target="_blank" rel="noopener">Powered by Buttondown.</a>
+        </p>
         <div class="hero-secondary">
           <a href="#philosophy" class="text-link">Read the philosophy <span class="arrow">→</span></a>
           <a href="https://github.com" class="text-link">Join the discussion on GitHub <span class="arrow">→</span></a>
@@ -378,11 +384,17 @@ without trailing-double-space gymnastics.</pre></div></div>
       </div>
       <h2>Thoth is just getting started.</h2>
       <p>Markdown's strength has always been its flexibility, and we want Thoth to honor that as it grows. If the approach resonates, follow along and share feedback.</p>
-      <form class="signup" onsubmit="event.preventDefault()">
-        <input type="email" placeholder="you@domain.com" aria-label="Email"/>
+      <form class="signup embeddable-buttondown-form"
+            action="https://buttondown.com/api/emails/embed-subscribe/thoth"
+            method="post"
+            target="popupwindow">
+        <input id="endcard-email" type="email" name="email" placeholder="you@domain.com" aria-label="Email" required/>
         <button type="submit">Get notified</button>
       </form>
-      <p class="signup-helper">Stay up to date on our progress and key decisions. No spam, and we won't share your email.</p>
+      <p class="signup-helper">
+        Stay up to date on our progress and key decisions. No spam, and we won't share your email.
+        <a class="powered-by" href="https://buttondown.com/refer/thoth" target="_blank" rel="noopener">Powered by Buttondown.</a>
+      </p>
       <a href="https://github.com" class="endcard-link">Join the discussion on GitHub →</a>
 
       <div class="endfoot">
