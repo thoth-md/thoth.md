@@ -1,0 +1,21 @@
+{
+    "image":"mcr.microsoft.com/devcontainers/universal:6",
+    "postCreateCommand": "bash ./.devcontainer/setup.sh",
+    "customizations": {
+    "vscode": {
+        "extensions": [
+            "anthropic.claude-code"
+        ]
+    }
+  },
+  "containerEnv": {
+      "DISPLAY": "${localEnv:DISPLAY}"
+  },
+  "remoteEnv": {
+      "DISPLAY": ":1"
+  },
+  "runArgs": [
+      "--volume=/mnt/wslg/.X11-unix:/tmp/.X11-unix",
+      "--volume=/mnt/wslg:/mnt/wslg"
+  ]
+}
