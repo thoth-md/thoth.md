@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Thoth — markdown, extended for scale</title>
+<meta name="description" content="Thoth is markdown extended for scale: readable cold, composable across files, structured enough for robots to read and write, and with tooling for humans and robots alike."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('thoth-theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+    } catch (_) {}
+  })();
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="thoth-lockup" viewBox="0 0 475 155">
+      <g class="lm-mark">
+        <rect x="14.19" y="12.64" width="115.62" height="15.80" rx="7.55"/>
+        <rect x="44.60" y="40.32" width="15.62" height="106.36" rx="7.41"/>
+        <rect x="73.70" y="40.29" width="15.56" height="88.46" rx="7.43"/>
+        <circle cx="113.52" cy="85.28" r="10.25"/>
+      </g>
+      <g class="lm-word">
+        <path d="M 202.21 36.73 Q 228.62 36.71 228.79 36.72 A 1.63 1.63 0.0 0 1 230.40 38.33 L 230.47 46.27 A 1.76 1.76 0.0 0 1 228.71 48.05 L 208.91 48.05 A 0.76 0.76 0.0 0 0 208.15 48.81 L 208.17 103.53 A 1.78 1.78 0.0 0 1 206.57 105.30 Q 206.06 105.36 202.27 105.36 Q 198.48 105.36 197.97 105.31 A 1.78 1.78 0.0 0 1 196.36 103.54 L 196.29 48.82 A 0.76 0.76 0.0 0 0 195.53 48.06 L 175.73 48.09 A 1.76 1.76 0.0 0 1 173.97 46.32 L 174.03 38.38 A 1.63 1.63 0.0 0 1 175.63 36.76 Q 175.81 36.76 202.21 36.73 Z"/>
+        <path d="M 249.87 56.93 L 253.38 54.72 A 1.74 1.70 -63.0 0 1 254.09 54.48 Q 258.59 54.02 272.78 54.17 C 279.29 54.24 284.58 58.29 286.73 64.21 Q 287.67 66.81 287.60 72.38 Q 287.50 79.74 287.58 103.65 A 1.70 1.70 0.0 0 1 285.88 105.35 L 277.22 105.35 A 1.36 1.35 0.0 0 1 275.86 104.00 Q 275.88 84.35 275.61 70.11 Q 275.53 65.71 270.49 65.22 Q 267.69 64.95 256.48 65.27 C 250.80 65.43 249.34 68.42 249.38 73.99 Q 249.51 94.11 249.39 103.80 A 1.56 1.56 0.0 0 1 247.83 105.34 L 239.11 105.34 A 1.43 1.42 90.0 0 1 237.69 103.91 L 237.69 38.24 A 1.59 1.59 0.0 0 1 239.28 36.65 L 248.06 36.65 A 1.30 1.30 0.0 0 1 249.36 37.95 L 249.36 56.65 A 0.33 0.33 0.0 0 0 249.87 56.93 Z"/>
+        <path d="M 348.2914 90.4945 A 14.87 14.87 0.0 0 1 333.3954 105.3386 L 312.0755 105.3014 A 14.87 14.87 0.0 0 1 297.2314 90.4054 L 297.2686 69.0855 A 14.87 14.87 0.0 0 1 312.1646 54.2414 L 333.4845 54.2786 A 14.87 14.87 0.0 0 1 348.3286 69.1746 L 348.2914 90.4945 Z M 336.7429 70.3986 A 5.24 5.24 0.0 0 0 331.5213 65.1403 L 314.2014 65.0799 A 5.24 5.24 0.0 0 0 308.9431 70.3015 L 308.8771 89.2214 A 5.24 5.24 0.0 0 0 314.0987 94.4797 L 331.4186 94.5401 A 5.24 5.24 0.0 0 0 336.6769 89.3185 L 336.7429 70.3986 Z"/>
+        <path d="M 374.85 65.76 Q 374.71 84.62 374.90 90.70 C 374.99 93.81 377.81 94.69 380.79 94.59 Q 387.22 94.38 390.26 94.48 A 1.55 1.55 0.0 0 1 391.76 96.03 L 391.76 103.27 A 2.03 2.03 0.0 0 1 389.94 105.29 Q 387.27 105.57 379.12 105.39 C 372.68 105.25 368.07 103.43 365.03 98.11 C 362.72 94.08 363.49 87.80 363.52 80.75 Q 363.55 72.03 363.37 66.04 A 0.88 0.88 0.0 0 0 362.49 65.18 L 355.95 65.18 A 1.54 1.53 -90.0 0 1 354.42 63.64 L 354.42 55.87 A 1.57 1.57 0.0 0 1 355.99 54.30 L 362.42 54.30 A 1.01 1.01 0.0 0 0 363.43 53.29 L 363.43 43.11 A 1.68 1.67 -0.0 0 1 365.11 41.44 L 373.24 41.44 A 1.52 1.52 0.0 0 1 374.76 42.96 L 374.76 53.15 A 1.18 1.18 0.0 0 0 375.94 54.33 L 390.62 54.33 A 1.06 1.06 0.0 0 1 391.68 55.39 L 391.68 63.46 A 1.65 1.65 0.0 0 1 390.03 65.11 L 375.50 65.11 A 0.66 0.65 -89.6 0 0 374.85 65.76 Z"/>
+        <path d="M 412.29 56.99 L 415.80 54.79 A 1.73 1.69 -62.9 0 1 416.51 54.56 Q 421.00 54.11 435.15 54.29 C 441.65 54.37 446.91 58.42 449.05 64.33 Q 449.98 66.93 449.90 72.48 Q 449.78 79.82 449.81 103.68 A 1.70 1.70 0.0 0 1 448.11 105.37 L 439.47 105.35 A 1.36 1.35 0.1 0 0 438.12 104.00 Q 438.18 84.40 437.94 70.19 Q 437.87 65.80 432.84 65.30 Q 430.05 65.03 418.87 65.32 C 413.20 65.47 411.74 68.45 411.77 74.01 Q 411.85 94.08 411.71 103.74 A 1.56 1.56 0.0 0 1 410.15 105.27 L 401.46 105.26 A 1.43 1.42 -89.9 0 1 400.04 103.83 L 400.19 38.32 A 1.59 1.59 0.0 0 1 401.77 36.74 L 410.53 36.76 A 1.30 1.30 0.0 0 1 411.83 38.06 L 411.79 56.71 A 0.33 0.33 0.0 0 0 412.29 56.99 Z"/>
+      </g>
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 16 16">
+      <path fill="currentColor" d="M6.5 1.5a6.5 6.5 0 1 0 6.93 8.78A5.5 5.5 0 0 1 6.5 1.5z"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 16 16">
+      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+        <circle cx="8" cy="8" r="3"/>
+        <path d="M8 1.5v1.5M8 13v1.5M1.5 8h1.5M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page">
+
+  <nav class="nav" aria-label="Primary">
+    <div class="nav-left">
+      <a href="#" class="logo-link" aria-label="Thoth home">
+        <svg class="logo logo-lockup" viewBox="0 0 475 155" aria-hidden="true"><use href="#thoth-lockup"/></svg>
+      </a>
+      <span class="nav-status" title="Thoth is in active development">
+        <span class="pulse" aria-hidden="true"></span>
+        <span class="nav-status-full">in active development</span>
+        <span class="nav-status-short">in dev</span>
+      </span>
+    </div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#philosophy">Philosophy</a>
+        <a href="#syntax">Syntax</a>
+        <a href="#stance">Stance</a>
+        <a href="https://github.com">GitHub</a>
+      </div>
+      <div class="theme-toggle" role="group" aria-label="Theme">
+        <button type="button" data-theme-set="dark" aria-label="Dark theme">
+          <svg width="13" height="13" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
+        <button type="button" data-theme-set="light" aria-label="Light theme">
+          <svg width="13" height="13" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="accent">01 ·</span>&nbsp;&nbsp;Thoth · markdown, extended</span>
+        <h1>Plain text that scales <span class="quiet">further than unstructured content.</span></h1>
+        <p class="lede">Thoth is markdown extended for scale: readable cold, composable across files, structured enough for robots to read and write, and with tooling for humans and robots alike.</p>
+        <form class="signup" onsubmit="event.preventDefault()">
+          <input id="hero-email" type="email" placeholder="you@domain.com" aria-label="Email"/>
+          <button type="submit">Get notified</button>
+        </form>
+        <p class="signup-helper">Stay up to date on our progress and key decisions. No spam, and we won't share your email.</p>
+        <div class="hero-secondary">
+          <a href="#philosophy" class="text-link">Read the philosophy <span class="arrow">→</span></a>
+          <a href="https://github.com" class="text-link">Join the discussion on GitHub <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="hero-demo">
+        <div class="demo-tabs">
+          <div class="demo-tab"><span class="dot"></span>Thoth source</div>
+          <div class="demo-tab"><span class="dot muted"></span>Rendered</div>
+        </div>
+        <div class="demo-body">
+          <div class="demo-source">
+<pre class="code"><span class="tok-hd"># </span>Authentication Guide
+
+<span class="tok-hd">## </span>Setup
+
+<span class="tok-ref">{./shared/api-keys.md#install}</span>
+
+<span class="tok-hd">## </span>Endpoints <span class="tok-id">{#endpoints}</span>
+
+<span class="tok-ref">{{./endpoints.csv | as:table}}</span>
+
+Need higher limits? See <span class="tok-id">{#endpoints}</span>
+or contact support.</pre>
+          </div>
+          <div class="demo-rendered">
+            <div class="md-preview">
+              <h1>Authentication Guide</h1>
+              <h2>Setup</h2>
+              <p>API keys live in your dashboard. Each request requires the key in the <code class="md-code">Authorization</code> header as a bearer token.</p>
+              <h2>Endpoints</h2>
+              <table class="tbl">
+                <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td class="method">GET</td><td>/users</td><td>List users in the workspace.</td></tr>
+                  <tr><td class="method">POST</td><td>/sessions</td><td>Begin a new authenticated session.</td></tr>
+                  <tr><td class="method">DELETE</td><td>/sessions/:id</td><td>Revoke an active session.</td></tr>
+                </tbody>
+              </table>
+              <p>Need higher limits? See <a href="#endpoints" class="xref">Endpoints</a> or contact support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="philosophy">
+    <div class="container-narrow">
+      <span class="section-num">02 · philosophy</span>
+      <h2 class="section-title serif">Plain text, designed for what we're actually doing with it.</h2>
+      <div class="manifesto">
+        <p><strong>Markdown won because it stayed out of the way.</strong> The source was the document — no renderer, no chrome, no ceremony. Thoth keeps that instinct, and builds on it.</p>
+        <p>What we're asking markdown to do has grown. The same format now carries our knowledge bases, our technical specs, the context we hand to language models, the writing that used to live in heavier tools. <strong>Thoth is markdown shaped for that scale on purpose</strong> — and the rest of this page is how.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="section-num">03 · scope</span>
+      <h2 class="section-title">What Thoth is, and isn't.</h2>
+      <p class="section-sub">An early-stage project benefits from being clear about its boundaries. Here's where Thoth lives, and where it doesn't.</p>
+      <div class="duality">
+        <div class="duality-col is">
+          <h3><span class="dot"></span>Thoth is</h3>
+          <ul>
+            <li><span class="num">01</span><div><p class="head">Human-readable and -writable, first.</p><p class="body">The syntax is subtle enough to ignore — if you don't recognize something, the prose still reads without it.</p></div></li>
+            <li><span class="num">02</span><div><p class="head">A scalable way to think about content.</p><p class="body">Works for one file. Works for a folder of ten thousand.</p></div></li>
+            <li><span class="num">03</span><div><p class="head">Honest about its second audience.</p><p class="body">Language models read and write more markdown than people do. Thoth is designed for it.</p></div></li>
+            <li><span class="num">04</span><div><p class="head">Forgiving by default.</p><p class="body">Thoth aims to render what you meant, not just what you typed. Strictness is available when you want it, not the default.</p></div></li>
+          </ul>
+        </div>
+        <div class="duality-col isnt">
+          <h3><span class="dot"></span>Thoth isn't</h3>
+          <ul>
+            <li><span class="num">01</span><div><p class="head">Not MDX.</p><p class="body">Code doesn't belong in prose.</p></div></li>
+            <li><span class="num">02</span><div><p class="head">Not markup.</p><p class="body">Content first, format last. If you can read it, it's working.</p></div></li>
+            <li><span class="num">03</span><div><p class="head">Not the &ldquo;best possible&rdquo; way to do anything.</p><p class="body">A good enough way to do most things — and good enough is often exactly right.</p></div></li>
+            <li><span class="num">04</span><div><p class="head">Not Word.</p><p class="body">Light on formatting, on purpose. Just enough to organize and emphasize, not every tool in the toolbox.</p></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="section-num">04 · what's new</span>
+      <h2 class="section-title">What's actually new.</h2>
+      <p class="section-sub">Three quiet additions, in service of one principle.</p>
+
+      <div class="fixes">
+        <div class="fix-row">
+          <div class="fix-meta">
+            <span class="fix-num">04.1 · composition</span>
+            <h3 class="fix-title">Composition over cramming.</h3>
+            <p class="fix-body">In plain markdown, every document is its own island. Need to reuse a setup section across three guides? Copy-paste, then keep them in sync forever. Thoth lets a document pull in another by reference — a section, a file, the result of a query. The same boilerplate updates in one place. A folder of small, focused files reads as one coherent document.</p>
+          </div>
+          <div class="fix-code two">
+            <div class="codefile">
+              <div class="codefile-head"><span class="label">file ·</span><span class="file">shared/setup.md</span></div>
+              <div class="codefile-body"><pre class="code"><span class="tok-hd">## </span>Install <span class="tok-id">{#install}</span>
+
+Run the installer and confirm with <span class="tok-str">`thoth --version`</span>.
+
+<span class="tok-hd">## </span>Configure <span class="tok-id">{#configure}</span>
+
+Drop a <span class="tok-str">`thoth.json`</span> in your project root.</pre></div>
+            </div>
+            <div class="codefile">
+              <div class="codefile-head"><span class="label">file ·</span><span class="file">docs/quickstart.md</span></div>
+              <div class="codefile-body"><pre class="code"><span class="tok-hd"># </span>Quick Start
+
+<span class="tok-ref">{./shared/setup.md#install}</span>
+
+<span class="tok-ref">{./shared/setup.md#configure}</span></pre></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fix-row">
+          <div class="fix-meta">
+            <span class="fix-num">04.2 · syntax</span>
+            <h3 class="fix-title">A little more syntax — instead of HTML.</h3>
+            <p class="fix-body">When markdown can't say what you need, you reach for HTML — and the prose disappears under angle brackets. Thoth gives you a little more syntax for the common cases: icons, real tables, image controls, layout, inline emphasis. Just enough to close the escape hatch.</p>
+          </div>
+          <div class="fix-code before-after">
+            <div class="codefile">
+              <div class="codefile-head"><span class="label">markdown · before</span><span class="badge before">before</span></div>
+              <div class="codefile-body"><pre class="code">Click the <span class="tok-tag">&lt;i class="ph ph-floppy-disk"&gt;&lt;/i&gt;</span>
+Save button to commit your changes.</pre></div>
+            </div>
+            <div class="codefile">
+              <div class="codefile-head"><span class="label">thoth · after</span><span class="badge after">after</span></div>
+              <div class="codefile-body"><pre class="code">Click the <span class="tok-ref">&lt;:floppy-disk&gt;</span> Save button to
+commit your changes.</pre></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fix-row">
+          <div class="fix-meta">
+            <span class="fix-num">04.3 · data</span>
+            <h3 class="fix-title">Data where the data lives.</h3>
+            <p class="fix-body">Hand-typed tables go stale. Thoth treats data as something to reference, not transcribe — pull from CSV, JSON, or YAML; filter, project, and format inline. When the source changes, the document changes. The prose stays prose.</p>
+          </div>
+          <div class="fix-code before-after">
+            <div class="codefile">
+              <div class="codefile-head"><span class="label">markdown · before</span><span class="badge before">before</span></div>
+              <div class="codefile-body"><pre class="code"><span class="tok-dim">| Product | Price | In Stock |</span>
+<span class="tok-dim">|--|--|--|</span>
+<span class="tok-dim">| Pro | $199 | yes |</span>
+<span class="tok-dim">| Plus | $99 | yes |</span>
+<span class="tok-dim">| Starter | $29 | no |</span></pre></div>
+            </div>
+            <div class="codefile">
+              <div class="codefile-head"><span class="label">thoth · after</span><span class="badge after">after</span></div>
+              <div class="codefile-body"><pre class="code"><span class="tok-ref">{{./products.json</span> <span class="tok-pipe">|</span> <span class="tok-fn">as:table</span><span class="tok-ref">}}</span></pre></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="syntax">
+    <div class="container">
+      <span class="section-num">05 · syntax</span>
+      <h2 class="section-title">Reducing the need for inline HTML.</h2>
+      <p class="section-sub">Each addition is small, ignorable when you don't know it, and consistent with the rest of the format.</p>
+      <div class="gallery">
+        <div class="gallery-card">
+          <div class="head">
+            <span class="num">05.1</span>
+            <h3 class="title">Real tables, from real data.</h3>
+            <p class="body">Pull from CSV, JSON, or YAML. Filter, project, and format inline — without ever maintaining a hand-typed table.</p>
+          </div>
+          <div class="codefile"><div class="codefile-body"><pre class="code"><span class="tok-ref">{{./users.json</span> <span class="tok-pipe">|</span> <span class="tok-fn">.users[role == "admin"]</span> <span class="tok-pipe">|</span> <span class="tok-fn">as:table</span><span class="tok-ref">}}</span></pre></div></div>
+        </div>
+        <div class="gallery-card">
+          <div class="head">
+            <span class="num">05.2</span>
+            <h3 class="title">Images that behave.</h3>
+            <p class="body">Alignment, sizing, and flow handled with the same annotation pattern as the rest of the format.</p>
+          </div>
+          <div class="codefile"><div class="codefile-body"><pre class="code"><span class="tok-tag">![Architecture overview]</span>(./diagram.png)<span class="tok-id">{.float-right width=320}</span>
+
+The system is composed of three layers:
+edge, application, and storage...</pre></div></div>
+        </div>
+        <div class="gallery-card">
+          <div class="head">
+            <span class="num">05.3</span>
+            <h3 class="title">Inline styling without tag soup.</h3>
+            <p class="body">Highlight, strikethrough, superscript, subscript — all in plain text, all readable cold.</p>
+          </div>
+          <div class="codefile"><div class="codefile-body"><pre class="code">The endpoint returns <span class="tok-ref">==success==</span> or an <span class="tok-ref">~~error~~</span> status.
+
+Water is H<span class="tok-ref">~2~</span>O. Energy scales as E=mc<span class="tok-ref">^2^</span>.</pre></div></div>
+        </div>
+        <div class="gallery-card">
+          <div class="head">
+            <span class="num">05.4</span>
+            <h3 class="title">Whitespace and linebreaks, your call.</h3>
+            <p class="body">Configure how line breaks and whitespace are handled per file or per project. Preserve poetry. Collapse code samples.</p>
+          </div>
+          <div class="codefile"><div class="codefile-body"><pre class="code"><span class="tok-com">---</span>
+<span class="tok-tag">linebreaks:</span> <span class="tok-str">preserve</span>
+<span class="tok-tag">whitespace:</span> <span class="tok-str">collapse</span>
+<span class="tok-com">---</span>
+
+Each line in this section
+keeps its break,
+without trailing-double-space gymnastics.</pre></div></div>
+        </div>
+      </div>
+      <p class="gallery-footer">Plus math, emoji, icons, layout primitives, and modern diagrams — all in the same readable spirit.</p>
+    </div>
+  </section>
+
+  <section class="section" id="stance">
+    <div class="container">
+      <span class="section-num">06 · stance</span>
+      <h2 class="section-title">Where we're starting.</h2>
+      <p class="section-sub">A few things we know we want.</p>
+      <div class="stance">
+        <div class="stance-item">
+          <div class="num">06.1</div>
+          <h3 class="head">Compatible with what you write today.</h3>
+          <p class="body">CommonMark is the baseline. What works in your current editor should mostly just work in Thoth.</p>
+        </div>
+        <div class="stance-item">
+          <div class="num">06.2</div>
+          <h3 class="head">Forgiving by default.</h3>
+          <p class="body">The renderer aims for the closest reasonable output for what you wrote, not the strictest interpretation. When you want to dial that up, it's a choice you can make.</p>
+        </div>
+        <div class="stance-item">
+          <div class="num">06.3</div>
+          <h3 class="head">Small core, room to grow.</h3>
+          <p class="body">The things that don't have to be in the core won't be — diagram types, alternate renderers, output formats are all the kind of thing that lives outside the center.</p>
+        </div>
+        <div class="stance-item">
+          <div class="num">06.4</div>
+          <h3 class="head">Built in the open.</h3>
+          <p class="body">The work, the discussion, and what we ship are all public from day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="section-num">07 · audience</span>
+      <h2 class="section-title">Built for everyone now writing markdown.</h2>
+      <p class="section-sub">Different tools, same ground truth.</p>
+      <div class="audience">
+        <div class="aud-row">
+          <div class="label">for technical writers</div>
+          <p>One source for the docs, the diagrams, the release notes, the internal wiki. Reuse a section by reference instead of copy-paste. Pull data from where it lives. Catch broken references before publish.</p>
+        </div>
+        <div class="aud-row">
+          <div class="label">for developers</div>
+          <p>Markdown that's easy to drop into a build. CommonMark-compatible, plugin-friendly, with diagrams and structured data that live next to your code.</p>
+        </div>
+        <div class="aud-row">
+          <div class="label">for AI and tooling teams</div>
+          <p>Documents with structure agents can address. Stable IDs, semantic tags, composable references. Round-trips cleanly through generation pipelines. Markdown that doesn't pretend its authors are all human.</p>
+        </div>
+        <div class="aud-row">
+          <div class="label">for platform teams</div>
+          <p>A shared, file-based way to write content that travels across teams and tools. Open source from day one — never a vendor problem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="endcard">
+    <div class="endcard-inner">
+      <div class="wordmark">
+        <svg class="logo logo-lockup endcard-lockup" viewBox="0 0 475 155" aria-hidden="true"><use href="#thoth-lockup"/></svg>
+      </div>
+      <h2>Thoth is just getting started.</h2>
+      <p>Markdown's strength has always been its flexibility, and we want Thoth to honor that as it grows. If the approach resonates, follow along and share feedback.</p>
+      <form class="signup" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="you@domain.com" aria-label="Email"/>
+        <button type="submit">Get notified</button>
+      </form>
+      <p class="signup-helper">Stay up to date on our progress and key decisions. No spam, and we won't share your email.</p>
+      <a href="https://github.com" class="endcard-link">Join the discussion on GitHub →</a>
+
+      <div class="endfoot">
+        <div class="lines">
+          Thoth is open source.<br/>
+          Built by the team behind Hyroglyph.
+        </div>
+        <div class="links">
+          <a href="#philosophy">Philosophy</a>
+          <a href="https://github.com">GitHub</a>
+          <a href="https://github.com">Discussions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    function syncToggle() {
+      var current = root.getAttribute('data-theme') || 'dark';
+      document.querySelectorAll('.theme-toggle button').forEach(function (b) {
+        b.setAttribute('data-active', String(b.getAttribute('data-theme-set') === current));
+      });
+    }
+    document.querySelectorAll('.theme-toggle button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = b.getAttribute('data-theme-set');
+        root.setAttribute('data-theme', t);
+        try { localStorage.setItem('thoth-theme', t); } catch (_) {}
+        syncToggle();
+      });
+    });
+    syncToggle();
+  })();
+</script>
+
+</body>
+</html>
