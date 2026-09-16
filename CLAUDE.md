@@ -9,6 +9,8 @@ A single static landing page for **Thoth**, a markdown-extended-for-scale projec
 - [index.html](index.html) — full page markup, inline SVG sprites for the lockup and theme icons, and a ~15-line inline `<script>` for the theme toggle.
 - [styles.css](styles.css) — design tokens for both themes, every section's styles, and responsive breakpoints.
 
+Alongside those sit the favicons: [favicon.svg](favicon.svg) (the source of truth, used by modern browsers), plus [favicon.ico](favicon.ico) and [apple-touch-icon.png](apple-touch-icon.png), which are generated from it for older browsers, crawlers, and iOS home screens (see [Regenerating the favicons](#regenerating-the-favicons)).
+
 There is no build step, no framework, and no JS runtime dependency. The fonts (Inter, Inter Tight, Instrument Serif, JetBrains Mono) are self-hosted: the WOFF2 files live in [fonts/](fonts/) and the `@font-face` declarations are in [fonts.css](fonts.css). Latin subset only — no calls to `fonts.googleapis.com` or `fonts.gstatic.com` at runtime, which keeps visitor IPs out of Google's hands.
 
 ### Adding a weight or refreshing the font files
@@ -97,6 +99,33 @@ Edit the token blocks at the top of [styles.css](styles.css) (`:root, [data-them
 ### Swapping the brand mark
 
 The lockup is an inline `<symbol id="thoth-lockup">` in [index.html](index.html). The original SVG primitives are in [design/project/brand-marks.jsx](design/project/brand-marks.jsx) — `ThothBars` (the mark itself) and the inline `<path>`s for the wordmark glyphs. CSS classes `.lm-mark` and `.lm-word` control fill colors so the lockup re-skins automatically when the theme changes.
+
+If the mark changes, update [favicon.svg](favicon.svg) to match and regenerate the raster favicons (next section).
+
+### Regenerating the favicons
+
+[favicon.svg](favicon.svg) is the only hand-edited icon. The other two are committed build outputs, so regenerate them whenever the SVG changes:
+
+- [favicon.ico](favicon.ico): 16, 32, and 48 px bitmaps in one file. Browsers and crawlers request `/favicon.ico` automatically, and older clients can't read SVG.
+- [apple-touch-icon.png](apple-touch-icon.png): 180×180 for iOS home screens. It's rendered with square corners (the SVG's `rx="44"` stripped), because iOS applies its own rounded mask and would show transparent corners as black.
+
+You need `rsvg-convert` (for sharp SVG rendering at each size) and ImageMagick (to pack the `.ico`). On Debian/Ubuntu: `sudo apt-get update && sudo apt-get install -y librsvg2-bin imagemagick`. On macOS: `brew install librsvg imagemagick`. Then, from the repo root:
+
+```sh
+for n in 16 32 48; do rsvg-convert -w $n -h $n favicon.svg -o fav-$n.png; done
+convert fav-16.png fav-32.png fav-48.png favicon.ico && rm fav-*.png
+sed 's/ rx="44"//' favicon.svg | rsvg-convert -w 180 -h 180 -o apple-touch-icon.png
+```
+
+On ImageMagick 7, `magick` replaces `convert`. Check the result with `identify favicon.ico`, which should list three frames.
+
+The `<head>` of [index.html](index.html) links all three. Keep the `.ico` link first with `sizes="32x32"`, because that stops Chrome from choosing the `.ico` over the SVG:
+
+```html
+<link rel="icon" href="favicon.ico" sizes="32x32"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+```
 
 ### Editing code samples
 

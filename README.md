@@ -8,6 +8,8 @@ A single static HTML page with one stylesheet and a small inline theme-toggle sc
 
 - [index.html](index.html) — the page (nav, hero with source/rendered split, philosophy, is/isn't, three fixes, syntax gallery, stance, audience, end-card).
 - [styles.css](styles.css) — design tokens + every section's styles + responsive breakpoints at 1080 / 900 / 560 px.
+- [fonts.css](fonts.css) + [fonts/](fonts/) — self-hosted WOFF2 fonts (latin subset).
+- [favicon.svg](favicon.svg), [favicon.ico](favicon.ico), [apple-touch-icon.png](apple-touch-icon.png) — site icons. The `.ico` and `.png` are generated from the SVG; see [CLAUDE.md](CLAUDE.md#regenerating-the-favicons).
 - [design/](design/) — original Claude Design handoff bundle (kept in-tree as the source of truth for visuals, copy, and code samples).
 - [CLAUDE.md](CLAUDE.md) — how this site was built, where the design came from, and how to update it.
 
@@ -37,8 +39,8 @@ There is no test suite. Verify changes by eye:
 
 ## Deploying
 
-Drop `index.html`, `styles.css`, and (optionally) `design/` onto any static host: GitHub Pages, Netlify, Cloudflare Pages, S3 + CloudFront, Vercel. The `design/` folder is reference material; you can exclude it from the deployed bundle if you prefer.
+Drop `index.html`, `styles.css`, `fonts.css`, `fonts/`, the three favicon files (`favicon.svg`, `favicon.ico`, `apple-touch-icon.png`), and (optionally) `design/` onto any static host: GitHub Pages, Netlify, Cloudflare Pages, S3 + CloudFront, Vercel. The `design/` folder is reference material; you can exclude it from the deployed bundle if you prefer.
 
 ## Making changes
 
-See [CLAUDE.md](CLAUDE.md) for the design origin, the rationale behind the static-HTML implementation, and a guide to common edits (copy changes, color changes, adding sections, swapping the brand mark).
+See [CLAUDE.md](CLAUDE.md) for the design origin, the rationale behind the static-HTML implementation, and a guide to common edits (copy changes, color changes, adding sections, swapping the brand mark, regenerating the favicons).
